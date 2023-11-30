@@ -1,2 +1,3 @@
 # zsh
-My zsh config
+
+This repository contains my zsh setup
