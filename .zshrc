@@ -24,7 +24,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -54,12 +54,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -77,9 +77,14 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
+# plugins=(git vi-mode zsh-syntax-highlighting zsh-autosuggestions)
+plugins=()
+
+# eval "$(brew shellenv)"
+# fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
 
 source $ZSH/oh-my-zsh.sh
+source $ZDOTDIR/private.sh
 
 # User configuration
 
@@ -87,7 +92,11 @@ source $ZSH/oh-my-zsh.sh
 bindkey -M viins 'jj' vi-cmd-mode
 
 # Aliases
-alias zreload='source ~/.zshrc'
+alias ..='cd..'
+alias h='function _h(){ if [[ $# > 0 ]]; then history | grep $1; else history; fi;};_h'
+alias mux='tmux -f ~/.custom_tmux/tmux.conf new-session -A -s main'
+alias myconnection='whois $(myip)'
+alias myip='curl http://ipecho.net/plain; echo'
 alias v='vim -Nu ~/.custom_vim/vimrc'
 
 # export MANPATH="/usr/local/man:$MANPATH"
